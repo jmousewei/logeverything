@@ -21,7 +21,7 @@ namespace LogEverything
 
             routes.MapRoute(
                 name: "Log",
-                url: "log/{content}",
+                url: "log",
                 defaults: new { controller = "Log", action = "Write" }
             );
 

