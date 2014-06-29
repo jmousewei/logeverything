@@ -14,8 +14,14 @@ namespace LogEverything
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Trigger",
+                url: "trigger",
+                defaults: new { controller = "Log", action = "Trigger" }
+            );
+
+            routes.MapRoute(
                 name: "Log",
-                url: "log/{src}/{content}",
+                url: "log/{content}",
                 defaults: new { controller = "Log", action = "Write" }
             );
 

