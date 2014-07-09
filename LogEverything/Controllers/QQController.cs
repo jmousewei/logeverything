@@ -20,6 +20,7 @@ namespace LogEverything.Controllers
             {
                 var qzone = new QOpenClient(access_token, expires_in, clientId);
                 var currentUser = qzone.GetCurrentUser();
+                var result = qzone.AddWeibo("Post by unauthorized app at " + DateTime.Now);
                 return JsonNet(currentUser);
             }
             return View();
