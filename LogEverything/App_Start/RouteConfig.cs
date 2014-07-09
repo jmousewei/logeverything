@@ -14,21 +14,27 @@ namespace LogEverything
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Trigger",
-                url: "trigger",
-                defaults: new { controller = "Log", action = "Trigger" }
+                name: "QQ",
+                url: "qq",
+                defaults: new { controller = "QQ", action = "Index" }
             );
 
             routes.MapRoute(
-                name: "Log",
-                url: "log",
-                defaults: new { controller = "Log", action = "Write" }
+                name: "QQInfo",
+                url: "qq/info",
+                defaults: new { controller = "QQ", action = "Info" }
+            );
+
+            routes.MapRoute(
+                name: "Redirect",
+                url: "redirect",
+                defaults: new { controller = "Redirect", action = "Index" }
             );
 
             routes.MapRoute(
                 name: "Home",
                 url: "{*url}",
-                defaults: new { controller = "Log", action = "Index" }
+                defaults: new { controller = "Home", action = "Index" }
             );
         }
     }

